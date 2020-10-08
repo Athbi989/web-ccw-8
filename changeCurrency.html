@@ -58,22 +58,51 @@
           UAE        amount * 12.01
           Turkey     amount * 24.68
         */
+
+        /*
+        This is old school way
+
         if (country == "USA") {
-          // دينار كويتي إلى دولار أمريكي
           newAmount = amount * 3.27;
           document.getElementById("newAmount").innerHTML = newAmount + " دولار أمريكي";
         } else if (country == "England") {
-          // دينار كويتي إلى باوند بريطاني
           newAmount = amount * 2.52;
           document.getElementById("newAmount").innerHTML = newAmount + " باوند بريطاني";
         } else if (country == "UAE") {
-          // دينار كويتي إلى درهم إماراتي
           newAmount = amount * 12.01;
           document.getElementById("newAmount").innerHTML = newAmount + " درهم إماراتي";
         } else if (country == "Turkey") {
-          // دينار كويتي إلى ليرة تركية
           newAmount = amount * 24.68;
           document.getElementById("newAmount").innerHTML = newAmount + " ليرة تركية";
+        }
+        */
+
+        var currencies = {
+          USA: {
+            equation: 3.27,
+            label: " دولار أمريكي",
+          },
+          England: {
+            equation: 2.52,
+            label: " باوند بريطاني",
+          },
+          UAE: {
+            equation: 12.01,
+            label: " درهم إماراتي",
+          },
+          Turkey: {
+            equation: 24.68,
+            label: " ليرة تركية",
+          },
+        };
+
+        if (currencies[country] != undefined) {
+          newAmount = amount * currencies[country]["equation"];
+          let label = currencies[country]["label"];
+          document.getElementById("newAmount").innerHTML = newAmount + label;
+        } else {
+          //الدولة مو موجودة بالأوبجكت
+          document.getElementById("newAmount").innerHTML = "ما اعرف احول هذه العملة اسف";
         }
       }
     </script>
